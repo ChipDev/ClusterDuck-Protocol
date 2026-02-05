@@ -11,13 +11,15 @@ int freeMemory() {
   return duckesp::freeHeapMemory();
 }
 #else
+#include <cstdlib>
 int freeMemory() {
   char top;
+
 #ifdef __arm__
   return &top - reinterpret_cast<char*>(sbrk(0));
 #elif defined(CORE_TEENSY) || (ARDUINO > 103 && ARDUINO != 151)
   return &top - __brkval;
-#else  // __arm__
+#elif defined __arm__ // __arm__
   return __brkval ? &top - __brkval : &top - __malloc_heap_start;
 #endif // __arm__
 }

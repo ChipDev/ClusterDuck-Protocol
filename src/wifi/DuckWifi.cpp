@@ -1,3 +1,4 @@
+
 #include "DuckWifi.h"
 
 int DuckWifi::reconnect(std::string ssid, std::string password) {
@@ -87,3 +88,4 @@ std::string loadWifiPassword() {
     }
     return epass;
 }
+#endif

@@ -12,7 +12,7 @@
 #define DUCKESP_H_
 
 #include "include/cdpcfg.h"
-#include <Arduino.h>
+#include "ArduinoReplacement.h"
 #include <string>
 
 namespace duckesp {

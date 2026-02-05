@@ -1,8 +1,9 @@
 #ifndef DUCK_H
 #define DUCK_H
 
-#include <Arduino.h>
+#include "../ArduinoReplacement.h"
 #include <ArduinoJson.h>
+
 #include "../utils/DuckError.h"
 #include "../include/cdpcfg.h"
 #include "../radio/DuckLoRa.h"

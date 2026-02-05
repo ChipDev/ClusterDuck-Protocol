@@ -1,14 +1,14 @@
 #ifndef CDPPACKET_H
 #define CDPPACKET_H
 
-#include "Arduino.h"
+#include "ArduinoReplacement.h"
 #include "utils/DuckUtils.h"
 #include "utils/DuckLogger.h"
 #include "utils/DuckError.h"
 #include "Ducks/DuckTypes.h"
 #include <string>
 #include <array>
-#include <CRC32.h>
+#include "include/CRC32.h"
 
 #define MAX_HOPS 6
 

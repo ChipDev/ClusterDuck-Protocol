@@ -7,12 +7,16 @@
  *
  * @copyright
  */
+
+// 2/5/26 : COMPILES g++ -Wall -std=c++17 routing/RouteJSON.h -Iinclude
+
 #ifndef RouteJSON_H
 #define RouteJSON_H
 
 #include <ArduinoJson.h>
 #include "../utils/DuckUtils.h"
 #include "../CdpPacket.h"
+#include <optional>
 
 class RouteJSON {
     public:

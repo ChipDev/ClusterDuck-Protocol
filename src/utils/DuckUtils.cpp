@@ -1,6 +1,7 @@
 #include "DuckUtils.h"
 #include <string>
 #include "DuckLogger.h"
+#include "../ArduinoReplacement.h"
 
 namespace duckutils {
 

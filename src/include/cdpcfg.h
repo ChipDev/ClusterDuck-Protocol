@@ -11,6 +11,8 @@
 
 #ifndef CDPCFG_H
 #define CDPCFG_H
+//disable wifi for linux
+#define CDPCFG_WIFI_NONE
 
 #ifdef CDP_EXTERNAL_BOARD
 #include "cdp_external_board.h"
