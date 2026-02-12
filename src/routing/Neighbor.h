@@ -9,13 +9,25 @@
  */
 #ifndef NEIGHBOR_H
 #define NEIGHBOR_H
-#include "SignalScore.h"
+#include <ArduinoJson.h>
+
 #include <list>
+#include <optional>
+#include <string>
+
+#include "../CdpPacket.h"
+
+#include "SignalScore.h"
 
 class Neighbor {
     public:
       Neighbor(Duid devId, Duid nextHop, SignalScore signalInfo, unsigned long lastSeen) :
-        DeviceId(devId), routingScore(signalInfo.signalScore), lastSeen(lastSeen), snr(signalInfo.snr), rssi(signalInfo.rssi) {
+        DeviceId(devId),  
+        lastSeen(lastSeen), 
+        snr(signalInfo.snr), 
+        rssi(signalInfo.rssi),
+        routingScore(signalInfo.signalScore) 
+    {
         // How to handle multiple next hops?
       }
         bool operator>(const Neighbor& other) const {

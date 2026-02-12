@@ -29,6 +29,7 @@
   (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 #endif
 
+#include "../include/cdpcfg.h"
 
 #if defined(ARDUINO)
 #include "Arduino.h"
@@ -37,7 +38,6 @@
 #include "../ArduinoReplacement.h"
 #define PORT std::cout
 #endif
-
 
 // https://github.com/esp8266/Arduino/blob/65579d29081cb8501e4d7f786747bf12e7b37da2/cores/esp8266/Print.cpp#L50
 static size_t cdpPrintf(const char *format, ...) {

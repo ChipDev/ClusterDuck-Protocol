@@ -4,6 +4,9 @@
 #include "../utils/DuckError.h"
 #include "../utils/DuckLogger.h"
 
+#include <string>
+using namespace std;
+
 class DuckWifiNone {
     public:
         int reconnect(std::string ssid, std::string password) {

@@ -10,6 +10,7 @@
 #include "DuckTypes.h"
 #include "../utils/DuckUtils.h"
 #include <cassert>
+#include <unistd.h>
 #include "../CdpPacket.h"
 #include "../DuckEsp.h"
 #include "../wifi/DuckWifiNone.h"
@@ -165,8 +166,8 @@ class Duck {
       if (err == DUCK_INTERNET_ERR_CONNECT) {
         int retry=0;
         while ( err ==  DUCK_INTERNET_ERR_CONNECT && retry < 5 ) {
-          Serial.printf("WiFi connection failed, retry connection: %s\n", ssid.c_str());
-          delay(5000);
+          printf("WiFi connection failed, retry connection: %s\n", ssid.c_str());
+          sleep(5000);
           err = err = this->duckWifi.joinNetwork(ssid, password);
           retry++;
         }  
@@ -245,7 +246,7 @@ class Duck {
       // // This gives us 10 seconds to do a hard reset if the board is in a bad state after power cycle
       // while (!Serial && millis() < 10000);
     
-      Serial.begin(baudRate);
+      //Serial.begin(baudRate);
       loginfo_ln("setupSerial rc = %d",DUCK_ERR_NONE);
       loginfo_ln("Running CDP Version: %s",duckutils::getCDPVersion().c_str());
       return DUCK_ERR_NONE;

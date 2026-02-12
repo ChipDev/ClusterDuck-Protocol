@@ -15,7 +15,7 @@
 #include "../utils/DuckError.h"
 #include "../utils/DuckLogger.h"
 #include "../utils/DuckUtils.h"
-//#include <RadioLib.h>
+#include <RadioLib.h>
 #include <memory>
 #include <chrono>
 #include <random>//replace to reduce program size
