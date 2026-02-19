@@ -31,21 +31,25 @@ class Duck {
      */
     void run(){
       duckRadio.serviceInterruptFlags();
+      printf("[DUCK.H] serviced interrupt flags.\n");
       Duck::logIfLowMemory();
       if(router.getNetworkState() == NetworkState::PUBLIC) {
         if(duckRadio.getReceiveFlag()){
           handleReceivedPacket();
+          printf("[DUCK.H] handled recieved packet.\n");
         }
       } else {
         if(this->getType() == DuckType::DETECTOR){
           loginfo_ln("Detector duck -- bypassing network search.");
           router.setNetworkState(NetworkState::PUBLIC);
         } else{
-            attemptNetworkJoin();
-            if(router.getNetworkState() == NetworkState::SEARCHING && (millis() > (NET_JOIN_DELAY * 5 + 5000L))){
-              loginfo_ln("No existing network found, creating new CDP network...");
-              router.setNetworkState(NetworkState::PUBLIC);
-            }
+          printf("[DUCK.H] attempting network join.\n");
+          attemptNetworkJoin();
+          if (router.getNetworkState() == NetworkState::SEARCHING && (millis() > (NET_JOIN_DELAY * 5 + 5000L))) {
+            printf("[DUCK.H] millis() > set amount\n");
+            loginfo_ln("No existing network found, creating new CDP network...");
+            router.setNetworkState(NetworkState::PUBLIC);
+          }
         }
       }
 

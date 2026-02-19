@@ -1,3 +1,6 @@
+#include <cstdarg>
+#include <cstdio>
+
 #ifndef DUCKLOGGER_H
 #define DUCKLOGGER_H
 
@@ -25,9 +28,10 @@
 #endif
 
 #ifndef __FILENAME__
-#define __FILENAME__                                                           \
+//#define __FILENAME__                                                           \
   (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#endif
+#define __FILENAME__ "FILENAME"
+  #endif
 
 #include "../include/cdpcfg.h"
 
@@ -41,6 +45,7 @@
 
 // https://github.com/esp8266/Arduino/blob/65579d29081cb8501e4d7f786747bf12e7b37da2/cores/esp8266/Print.cpp#L50
 static size_t cdpPrintf(const char *format, ...) {
+  #ifndef LINUX
     va_list arg;
     va_start(arg, format);
     char temp[64];
@@ -61,6 +66,20 @@ static size_t cdpPrintf(const char *format, ...) {
         delete[] buffer;
     }
     return len;
+    #endif
+    #ifdef LINUX
+
+      va_list args;
+      va_start(args, format);
+
+      // print to console (stdout). Use stderr if you prefer.
+      int rc = vfprintf(stdout, format, args);
+      va_end(args);
+
+      if (rc < 0) return 0;
+      fflush(stdout);  // optional: force immediate output
+      return static_cast<size_t>(rc);
+    #endif
 }
 
 #ifdef CDP_LOG_ERROR
@@ -110,14 +129,12 @@ static size_t cdpPrintf(const char *format, ...) {
 #define loginfo(format, ...)                                    \
   do {                                                          \
     cdpPrintf("[I]");                                           \
-    cdpPrintf("[%s] ",__FILENAME__);                            \
     cdpPrintf(format, ##__VA_ARGS__);                           \
   } while (0)
 
 #define loginfo_ln(format, ...)                                 \
   do {                                                          \
     cdpPrintf("[I]");                                           \
-    cdpPrintf("[%s] ",__FILENAME__);                            \
     cdpPrintf(format, ##__VA_ARGS__);cdpPrintf("\n");           \
   } while (0)
 #else

@@ -1,26 +1,38 @@
-#ifdef __arm__
-// should use uinstd.h to define sbrk but Due causes a conflict
-extern "C" char* sbrk(int incr);
-#else  // __ARM__
-extern char* __brkval;
-#endif // __arm__
-
 #ifdef ESP32
 #include "../DuckEsp.h"
 int freeMemory() {
   return duckesp::freeHeapMemory();
 }
+#elif defined(__linux__)
+#include <fstream>
+#include <string>
+#include <cstdio>
+int freeMemory() {
+  std::ifstream meminfo("/proc/meminfo");
+  std::string line;
+  while (std::getline(meminfo, line)) {
+    if (line.find("MemAvailable:") == 0) {
+      long kb = 0;
+      sscanf(line.c_str(), "MemAvailable: %ld kB", &kb);
+      return (int)(kb * 1024);
+    }
+  }
+  return -1;
+}
 #else
-#include <cstdlib>
+#ifdef __arm__
+extern "C" char* sbrk(int incr);
+#else
+extern char* __brkval;
+#endif
 int freeMemory() {
   char top;
-
 #ifdef __arm__
   return &top - reinterpret_cast<char*>(sbrk(0));
 #elif defined(CORE_TEENSY) || (ARDUINO > 103 && ARDUINO != 151)
   return &top - __brkval;
-#elif defined __arm__ // __arm__
-  return __brkval ? &top - __brkval : &top - __malloc_heap_start;
-#endif // __arm__
+#else
+  return -1;
+#endif
 }
-#endif //ESP32
+#endif

@@ -1,0 +1,22 @@
+g++ -std=c++17 -D__linux__ -DLORAWAN_SX1262 -O2 -Iinclude -IDucks -Iutils -Iwifi -Iradio -Irouting -Iconfig -I/usr/local/include/RadioLib -I/usr/local/include/RadioLib/hal/ -I/usr/local/include -I/usr/local/include -o MamaDuck ./DuckEsp.cpp ./CdpPacket.cpp ./MamaDuck.cpp ./ArduinoReplacement.cpp ./radio/DuckLoRa.cpp ./utils/MemoryFree.cpp ./utils/DuckUtils.cpp ./routing/DuckRouter.cpp ./routing/bloomfilter.cpp -L/usr/local/lib -lRadioLib -llgpio -lpthread
+In file included from ./MamaDuck.cpp:13:
+./CDP.h:38:1: note: ‘#pragma message: 
+-- CDP Library Info --
+Version:  "5.0.0"
+Board: "Waveshare LoRaWAN SX1262"
+Compile Date: Feb 19 2026 - 21:41:29’
+   38 | )
+      | ^
+In file included from /usr/include/c++/14/bits/stl_algobase.h:66,
+                 from /usr/include/c++/14/bits/stl_tree.h:63,
+                 from /usr/include/c++/14/map:62,
+                 from ./routing/DuckRouter.h:13,
+                 from ./routing/DuckRouter.cpp:1:
+In function ‘constexpr void std::__advance(_InputIterator&, _Distance, input_iterator_tag) [with _InputIterator = __detail::_Node_iterator<pair<const __cxx11::basic_string<char>, __cxx11::list<Neighbor> >, false, true>; _Distance = long int]’,
+    inlined from ‘constexpr void std::advance(_InputIterator&, _Distance) [with _InputIterator = __detail::_Node_iterator<pair<const __cxx11::basic_string<char>, __cxx11::list<Neighbor> >, false, true>; _Distance = long int]’ at /usr/include/c++/14/bits/stl_iterator_base_funcs.h:224:21,
+    inlined from ‘constexpr _BidirectionalIterator std::prev(_BidirectionalIterator, typename iterator_traits<_Iter>::difference_type) [with _BidirectionalIterator = __detail::_Node_iterator<pair<const __cxx11::basic_string<char>, __cxx11::list<Neighbor> >, false, true>]’ at /usr/include/c++/14/bits/stl_iterator_base_funcs.h:250:19,
+    inlined from ‘void DuckRouter::CullRoutingTable(size_t)’ at ./routing/DuckRouter.cpp:41:28:
+/usr/include/c++/14/bits/stl_iterator_base_funcs.h:162:7: warning: iteration 9223372036854775807 invokes undefined behavior [-Waggressive-loop-optimizations]
+  162 |       while (__n--)
+      |       ^~~~~
+/usr/include/c++/14/bits/stl_iterator_base_funcs.h:162:7: note: within this loop

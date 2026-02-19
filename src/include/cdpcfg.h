@@ -13,6 +13,13 @@
 #define CDPCFG_H
 //disable wifi for linux
 #define CDPCFG_WIFI_NONE
+//used?
+#define LINUX
+#define CDP_LOG_INFO
+
+#ifndef LORAWAN_SX1262
+#define LORAWAN_SX1262
+#endif
 
 #ifdef CDP_EXTERNAL_BOARD
 #include "cdp_external_board.h"
@@ -22,6 +29,7 @@
 #include "boards/lilygo_t_beam_sx1262.h"
 #include "boards/lilygo_t_beam_supreme_sx1262.h"
 #include "boards/ttgo_t_beam_v1_sx1276.h"
+#include "boards/lorawan_sx1262.h"
 #endif
 
 // version definitions

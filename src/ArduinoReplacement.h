@@ -10,3 +10,5 @@ typedef bool boolean;
 int random(int max);
 
 uint64_t millis();
+
+void vTaskDelay(int ms);

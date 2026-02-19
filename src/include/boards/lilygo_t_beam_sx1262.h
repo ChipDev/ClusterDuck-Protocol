@@ -7,6 +7,7 @@
  * (GPS module and 18650 holder)
  */
 #if defined(ARDUINO_T_Beam)
+// ^^ Not relevant to our rPi implementation
 
 #define CDP_BOARD_NAME "LilyGO T_Beam SX1262"
 #define CDPCFG_RADIO_SX1262

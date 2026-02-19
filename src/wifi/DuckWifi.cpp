@@ -1,7 +1,6 @@
-
 #include "DuckWifi.h"
 
-int DuckWifi::reconnect(std::string ssid, std::string password) {
+    int DuckWifi::reconnect(std::string ssid, std::string password) {
     return DUCK_ERR_NONE;
 }
 

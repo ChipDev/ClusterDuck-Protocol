@@ -8,6 +8,8 @@
  * @copyright
  */
 
+#define CDPCFG_RADIO_SX1262
+
 #ifndef DUCKLORA_H_
 #define DUCKLORA_H_
  
@@ -19,6 +21,7 @@
 #include <memory>
 #include <chrono>
 #include <random>//replace to reduce program size
+#include "../include/cdpcfg.h"
 
 /**
  * @brief Internal structure to hold the LoRa module configuration
