@@ -31,7 +31,7 @@ class Duck {
      */
     void run(){
       duckRadio.serviceInterruptFlags();
-      printf("[DUCK.H] serviced interrupt flags.\n");
+      // printf("[DUCK.H] serviced interrupt flags.\n");
       Duck::logIfLowMemory();
       if(router.getNetworkState() == NetworkState::PUBLIC) {
         if(duckRadio.getReceiveFlag()){
