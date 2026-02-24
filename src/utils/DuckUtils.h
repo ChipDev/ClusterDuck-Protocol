@@ -88,13 +88,16 @@ template<typename T>
 std::string toString(const std::vector<T>& vec) {
     std::string result;
     for (const auto& element : vec) {
-        if (!std::isprint(element)) {
-            return "ERROR: Non-printable character";
-        }
-        result += static_cast<char>(element);
+      unsigned char c = static_cast<unsigned char>(element);
+      if (!std::isprint(c)) {
+        printf("Non-printable byte: 0x%02X\n", c);
+        return "ERROR: Non-printable character";
+      }
     }
     return result;
 }
+
+
 
 /**
  * @brief Convert an array into an ASCII string.

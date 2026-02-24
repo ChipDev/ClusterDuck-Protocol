@@ -33,6 +33,7 @@ class RouteJSON {
 
             std::string log;
             serializeJson(json, log);
+            
             loginfo_ln("RouteDoc: %s", log.c_str());
         }
 

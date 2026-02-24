@@ -36,7 +36,7 @@ class Duck {
       if(router.getNetworkState() == NetworkState::PUBLIC) {
         if(duckRadio.getReceiveFlag()){
           handleReceivedPacket();
-          printf("[DUCK.H] handled recieved packet.\n");
+          printf("[DUCK.H] handled received packet.\n");
         }
       } else {
         if(this->getType() == DuckType::DETECTOR){
